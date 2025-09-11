@@ -1,5 +1,4 @@
-from db import db
-from models import User, Character, Message
+from models import db, User, Character, Message
 from anthropic import Anthropic
 
 claude = None
