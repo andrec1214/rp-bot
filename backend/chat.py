@@ -1,6 +1,6 @@
-from app import app
+from app import app, db
 from init import setup
-from utils import db, prompt_claude, build_context_for_prompt, build_system_prompt
+from utils import prompt_claude, build_context_for_prompt, build_system_prompt
 from models import Message
 from sqlalchemy.exc import IntegrityError
 

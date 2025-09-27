@@ -1,5 +1,5 @@
-from app import app
-from models import db, User, Character, Session
+from app import app, db
+from models import User, Character, Session
 from sqlalchemy.exc import IntegrityError
 from utils import init_claude
 
