@@ -106,7 +106,3 @@ Characters can be defined with:
 ## Contributing
 
 This is a personal project for portfolio demonstration. Feel free to fork and modify for your own use.
-
-## License
-
-This project is for educational and portfolio purposes.
