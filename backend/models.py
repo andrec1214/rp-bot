@@ -1,8 +1,9 @@
-from db import db
 from datetime import datetime, timezone
 from werkzeug.security import check_password_hash, generate_password_hash
+from flask_sqlalchemy import SQLAlchemy
 
 # USERS have CHARACTERS which have SESSIONS which have MESSAGES
+db = SQLAlchemy()
 
 # User table
 class User(db.Model):
@@ -50,7 +51,7 @@ class Session(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     character_id = db.Column(db.Integer, db.ForeignKey("characters.id"), nullable=False)
     
-    title = db.Column(db.String(256)) # optional title for a session, can implement into a session-specific save system later
+    title = db.Column(db.String(256), nullable=False, default=f"Session {datetime.now(timezone.utc)}")
     created_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
 
     messages = db.relationship("Message", backref="session", lazy=True)

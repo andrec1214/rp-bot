@@ -1,7 +1,7 @@
-from app import app, db
+from app import app
 from init import setup
 from utils import prompt_claude, build_context_for_prompt, build_system_prompt
-from models import Message
+from models import db, Message
 from sqlalchemy.exc import IntegrityError
 
 user, character, session = setup()
@@ -40,7 +40,7 @@ try:
             db.session.add(user_message)
             db.session.commit()
 
-            sys_prompt = build_system_prompt(user.id, session.id, user_prompt)
+            sys_prompt = build_system_prompt(user.id, character.id, user_prompt)
             context = build_context_for_prompt(session.id, user_msg)
             char_msg = prompt_claude(context, sys_prompt)
 

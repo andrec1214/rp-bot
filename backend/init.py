@@ -1,5 +1,5 @@
-from app import app, db
-from models import User, Character, Session
+from app import app
+from models import db, User, Character, Session
 from sqlalchemy.exc import IntegrityError
 from utils import init_claude
 
@@ -109,9 +109,9 @@ def setup():
                     password = input("\nPlease select a password between 6 to 20 characters: ").strip()
                     while not password or len(password) < 6 or len(password) > 20:
                         if not password:
-                            password = input("\nYour password cannot be blank. Please try aagin: ")
+                            password = input("\nYour password cannot be blank. Please try agin: ")
                         elif len(password) < 6 or len(password) > 20:
-                            password = input("\nYour password must be between 6 and 20 charactes. Please try again: ")
+                            password = input("\nYour password must be between 6 and 20 characters. Please try again: ")
 
                     user = User(username=name)
                     user.set_password(password)
@@ -174,7 +174,7 @@ def setup():
 
                     elif ans == 1:
                         char = create_character(user)
-                        title = input(f"\nYou may enter a title for your session with {char.name}. This is purely optional. Enter here: ").strip()
+                        title = input(f"\nYou may enter a title for your session with {char.name}. If you do not, a default will be assigned. Enter here: ").strip()
                         sesh = Session(character_id=char.id, title=title if title else None)
                         db.session.add(sesh)
                         db.session.commit()
@@ -187,7 +187,7 @@ def setup():
             else:
                 print("\nLet's create your first character!")
                 char = create_character(user)
-                title = input(f"\nYou may enter a title for your session with {char.name}. This is purely optional. Enter here: ").strip()
+                title = input(f"\nYou may enter a title for your session with {char.name}. If you do not, a default will be assigned. Enter here: ").strip()
                 sesh = Session(character_id=char.id, title=title if title else None)
                 db.session.add(sesh)
                 db.session.commit()

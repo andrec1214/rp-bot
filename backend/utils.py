@@ -1,5 +1,4 @@
-from db import db
-from models import User, Character, Message
+from models import db, User, Character, Message
 from anthropic import Anthropic
 
 claude = None
@@ -93,6 +92,7 @@ def create_summary(session_id, messages_to_summarize):
     summary_msg = Message(
         content=summary_text,
         sender="system",
+        char_name="system",
         is_summary=True,
         session_id=session_id
     )
